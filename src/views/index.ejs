@@ -1,1 +1,134 @@
-<h1>Home Page</h1>
+<div class="wrapper">
+    <div class="loginForm">
+        <h2>WHAT'S YOUR NAME?</h2>
+        <div>
+            <label><b>Username</b>: </label><br />
+            <input type="text" id="username" placeholder="Enter username..." />
+        </div>
+        <div>
+            <button id="btnRegister">Register</button>
+        </div>
+    </div>
+    <div class="chatForm">
+        <div class="left">
+            <div class="boxTitle">
+                Users Online
+            </div>
+            <div id="boxContent">
+               
+            </div>
+        </div>
+        <div class="right">
+            <div class="sayHi">Hello <span class="currentUser">Dung</span></div>
+            <button id="btnLogout">Logout</button>
+            <div class="listMsg">
+
+            </div>
+            <input type="text" id="txtMsg">
+            <button id="btnSend">Send</button>
+        </div>
+    </div>
+</div>
+<style>
+    h2 {
+        padding: 10px 0;
+    }
+
+    .wrapper {
+        width: 600px;
+        margin: 20px auto;
+    }
+
+    input {
+        width: 300px;
+        padding: 8px 10px;
+        margin: 5px 0;
+        outline: none;
+        border: 1px solid gray;
+        border-radius: 3px;
+    }
+
+    button#btnRegister {
+        color: white;
+        padding: 8px 10px;
+        float: right;
+        margin-right: 280px;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        background: #1976d2;
+        border-radius: 3px;
+    }
+
+    .loginForm {
+        height: 150px;
+    }
+
+    .chatForm {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .left,
+    .right {
+        min-height: 300px;
+    }
+
+    .left {
+        width: 25%;
+        float: left;
+        border: 1px solid gray;
+    }
+
+    .right {
+        width: 70%;
+        float: right;
+    }
+
+    .boxTitle {
+        border-bottom: 1px solid gray;
+    }
+
+    .userOnline {
+        padding: 5px 0;
+        border-bottom: 1px solid gray;
+    }
+
+    .sayHi {
+        text-align: right;
+    }
+
+    button#btnLogout {
+        margin-top: 10px;
+        float: right;
+        color: white;
+        padding: 8px 10px;
+        float: right;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        background: #1976d2;
+        border-radius: 3px;
+    }
+
+    .listMsg {
+        margin-top: 50px;
+        height: 200px;
+        background-color: white;
+    }
+
+    button#btnSend {
+        margin-top: 5px;
+        float: right;
+        color: white;
+        padding: 8px 25px;
+        float: right;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        background: #1976d2;
+        border-radius: 3px;
+    }
+</style>
+<script src="../javascript/index.js"></script>
+<script src="socket.io/socket.io.js"></script>

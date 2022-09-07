@@ -18,4 +18,24 @@ const io = new Server(server);
 const port = process.env.PORT || 4000;
 viewEngine(app);
 routes(app);
+const usersOnline = [];
+io.on('connection', (socket) => {
+    console.log('User connected successfully!');
+    console.log(socket.id);
+    socket.on('register', (user) => {
+        const username = user.trim();
+        const rs = usersOnline.includes(username);
+        if (rs) {
+            console.log('Error');
+            socket.emit('register-failure');
+        } else {
+            usersOnline.push(username);
+            socket.emit('register-success', username);
+            socket.username = username;
+            io.sockets.emit('send-usersOnline', usersOnline);
+            // console.log(usersOnline);
+        }
+    });
+});
+
 server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
