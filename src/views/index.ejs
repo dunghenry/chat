@@ -6,7 +6,7 @@
             <input type="text" id="username" placeholder="Enter username..." />
         </div>
         <div>
-            <button id="btnRegister">Register</button>
+            <button id="btnRegister">Login</button>
         </div>
     </div>
     <div class="chatForm">
@@ -15,16 +15,16 @@
                 Users Online
             </div>
             <div id="boxContent">
-               
+
             </div>
         </div>
         <div class="right">
             <div class="sayHi">Hello <span class="currentUser">Dung</span></div>
             <button id="btnLogout">Logout</button>
             <div class="listMsg">
-
             </div>
-            <input type="text" id="txtMsg">
+            <div id="notification"></div>
+            <input type="text" id="chatMsg">
             <button id="btnSend">Send</button>
         </div>
     </div>
@@ -83,6 +83,8 @@
     .right {
         width: 70%;
         float: right;
+        
+        padding: 10px;
     }
 
     .boxTitle {
@@ -113,8 +115,11 @@
 
     .listMsg {
         margin-top: 50px;
+        margin-bottom: 10px;
         height: 200px;
-        background-color: white;
+        padding-left: 10px;
+        /* background-color: white; */
+        background: #ebeef4;
     }
 
     button#btnSend {
@@ -128,6 +133,45 @@
         border: none;
         background: #1976d2;
         border-radius: 3px;
+    }
+
+    .msgUserOther {
+        font-size: 12px;
+        color: gray;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .msg {
+        font-size: 16px;
+        color: black;
+        line-height: 15px;
+        background-color: #E4E6EB;
+        border-radius: 3px;
+        padding: 10px 10px;
+        width: 30%;
+        float: left;
+    }
+
+    .msgMe {
+        font-size: 16px;
+        position: relative;
+        width: 30%;
+        color: white;
+        line-height: 15px;
+        background-color: rgb(0, 132, 255);
+        border-radius: 10px;
+        padding: 10px 10px;
+        margin: 10px 0;
+        left: 66%;
+    }
+    #chatMsg{
+        margin: 5px 0;
+    }
+    img#notification{
+        position: relative;
+        top: 8px;
+        left: 5px;
     }
 </style>
 <script src="../javascript/index.js"></script>

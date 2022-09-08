@@ -18,10 +18,9 @@ const io = new Server(server);
 const port = process.env.PORT || 4000;
 viewEngine(app);
 routes(app);
-const usersOnline = [];
+let usersOnline = [];
 io.on('connection', (socket) => {
-    console.log('User connected successfully!');
-    console.log(socket.id);
+    console.log('User connection ' + socket.id);
     socket.on('register', (user) => {
         const username = user.trim();
         const rs = usersOnline.includes(username);
@@ -33,8 +32,36 @@ io.on('connection', (socket) => {
             socket.emit('register-success', username);
             socket.username = username;
             io.sockets.emit('send-usersOnline', usersOnline);
-            // console.log(usersOnline);
         }
+    });
+    socket.on('logout', () => {
+        const filterUsersOnline = usersOnline.filter(
+            (item) => item !== socket.username,
+        );
+        socket.broadcast.emit('update-usersOnline', filterUsersOnline);
+        socket.emit('logout-sucess');
+        usersOnline = filterUsersOnline;
+    });
+    socket.on('user-chat', (msg) => {
+        if (socket.username) {
+            socket.broadcast.emit('send-msg-users', {
+                username: socket.username,
+                msg,
+            });
+            socket.emit('send-msg-me', msg);
+        }
+    });
+    socket.on('enter-msg', () => {
+        socket.broadcast.emit('user-enter-msg', socket.username);
+    });
+    socket.on('end-enter-msg', () => {
+        // console.log('end-enter-msg');
+        // console.log(socket.username);
+        socket.broadcast.emit('user-end-enter-msg');
+    });
+    socket.on('disconnect', () => {
+        // usersOnline = usersOnline.filter(user => socket.username !== user);
+        console.log('User disconnect :' + socket.id);
     });
 });
 
